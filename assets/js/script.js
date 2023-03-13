@@ -16,5 +16,4 @@ $searchBtn.on('click', function() {
             console.log('Error');
         }
     });
-
 });
