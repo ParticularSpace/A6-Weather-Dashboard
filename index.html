@@ -1,60 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <title>Weather Dashboard</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- As a traveler i want to see weather data from different cities -->
     <div class="container">
-        <div class="search">
-            <input type="text" placeholder="City...">
-            <button>Search</button>
+        <header>
+            <h1>Weather Dashboard</h1>
+            <form class="search">
+              <input type="text" id="search-input" placeholder="Enter a city name" />
+              <button type="submit" id="search-button">Search</button>
+            </form>
+        </header>    
         </div>
-        <div class="weather">
-            <div class="weather-card">
-                <div class="weather-card-city">Location</div>
-                <div class="weather-temp">Temp</div>
-            </div>
-            <div class="weather-card">
-                <div class="weather-card-city">Location</div>
-                <div class="weather-temp">Temp</div>
-            </div>
-            <div class="weather-card">
-                <div class="weather-card-city">Location</div>
-                <div class="weather-temp">Temp</div>
-            </div>
-            <div class="weather-card">
-                <div class="weather-card-city">Location</div>
-                <div class="weather-temp">Temp</div>
-            </div>
-            <div class="weather-card">
-                <div class="weather-card-city">Location</div>
-                <div class="weather-temp">Temp</div>
-            </div>
-            <div class="weather-card">
-                <div class="weather-card-city">Location</div>
-                <div class="weather-temp">Temp</div>
-            </div>
-            <div class="weather-card">
-                <div class="weather-card-city">Location</div>
-                <div class="weather-temp">Temp</div>
-            </div>
-            <div class="weather-card">
-                <div class="weather-card-city">Location</div>
-                <div class="weather-temp">Temp</div>
-            </div>
-            <div class="weather-card">
-                <div class="weather-card-city">Location</div>
-                <div class="weather-temp">Temp</div>
-            </div>
+        <div id="search-history"></div>
+        <div class="weather" id="weather"></div>
+      </div>
+          </header>
+      <div class="weather">
+        <div class="weather-card">
+          <div>
+            <h1 class="weatherCityBellingham">Bellingham</h1>
+            <p1><strong>Temperature: </strong></p1>
+            <p1 class="weatherTempBellingham"></p1>
+          </div>
+          <div class="weatherIconBellingham"></div>
         </div>
+        <div class="weather-card">
+          <div class="weather-city">Location</div>
+          <div class="weather-temp">Temp</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-city">Location</div>
+          <div class="weather-temp">Temp</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-city">Location</div>
+          <div class="weather-temp">Temp</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-city">Location</div>
+          <div class="weather-temp">Temp</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-city">Location</div>
+          <div class="weather-temp">Temp</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-city">Location</div>
+          <div class="weather-temp">Temp</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-city">Location</div>
+          <div class="weather-temp">Temp</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-city">Location</div>
+          <div class="weather-temp">Temp</div>
+        </div>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="assets/js/script.js"></script>
-</body>
+  </body>
 </html>
