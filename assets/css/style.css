@@ -5,6 +5,10 @@
     padding: 20px;
     background-color: lightblue;
   }
+
+  .hidden{
+    display: none;
+  }
   
   header h1 {
     font-size: 50px;
@@ -57,6 +61,12 @@
     margin: 10px;
     padding: 20px;
     width: calc((100% / 2) - 20px);
+  }
+
+  .mapLocation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   @media (max-width: 600px) {
