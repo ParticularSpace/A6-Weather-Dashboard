@@ -6,6 +6,11 @@
     background-color: lightblue;
   }
   
+  header h1 {
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
   .search {
     display: flex;
     justify-content: center;
