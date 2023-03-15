@@ -4,7 +4,7 @@ $(document).ready(function () {
     const $weatherTempBellingham = $('.weatherTempBellingham');
     const $weatherCityBellingham = $('.weatherCityBellingham');
     const $feelsLikeBellingham = $('.feelsLikeBellingham');
-    const $mapLocation = $('.mapLocation');
+    const $weatherForecast = $('.weatherForecast');
 
 
     $searchBtn.on('click', function (event) {
@@ -38,7 +38,25 @@ $(document).ready(function () {
                     console.log('Error');
                 }
 
+            
+
             });
+
+            // $.ajax({
+
+            //     url: `http://api.openweathermap.org/data/2.5/forcast/zip?zip=${cityZip}&appid=25d33f8c57018604cd95eaaaa98fb241`,
+            //     type: 'GET',
+            //     dataType: 'json',
+            //     success: function (data) {
+            //         console.log(data);
+            //         //display weather forecast data
+            //         $weatherForecast.html(data.list);
+            //     },
+            //     error: function () {
+            //         console.log('Error');
+            //     }
+
+            // });
         }
     });
 });
