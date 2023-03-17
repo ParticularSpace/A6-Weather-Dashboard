@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     const $searchBtn = $('#search-button');
     const $weatherTemp = $('.weatherTemp');
-    const $weatherCity = $('.weatherCity');
+    const $weatherCity = $('.location');
     const $feelsLike = $('.feelsLike');
     const $weatherForecast = $('.weatherForecast');
     
@@ -10,13 +10,7 @@ $(document).ready(function () {
     $searchBtn.on('click', function (event) {
         let $city = $('#city').val();
         event.preventDefault();
-
-        if ($city.length == 'city') {
-            //empty input field
-            $("#search-input").val('');
-            window.alert("Please enter a valid zip code");
-            
-        } else {
+        if ($city != '') {
 
             $.ajax({
 
@@ -28,15 +22,13 @@ $(document).ready(function () {
                     localStorage.setItem('weatherData', JSON.stringify(data.city.name));
                     console.log(data);
                     //display data
-                    $weatherCity.html(data.name + ', ' + data.city.country);
-                    $weatherTemp.html(data.main.temp + ' &deg;F');
-                    $feelsLike.html(data.main.feels_like + ' &deg;F');
+                    $weatherCity.html(data.city.name + ', ' + data.city.country);
+                    $weatherTemp.html(data.list[0].main.temp + ' &deg;F');
+                    $feelsLike.html(data.list[0].main.feels_like + ' &deg;F');
                 },
                 error: function () {
                     console.log('Error');
                 }
-
-            
 
             });
         }
