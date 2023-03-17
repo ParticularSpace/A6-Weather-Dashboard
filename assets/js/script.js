@@ -5,6 +5,13 @@ $(document).ready(function () {
     const $weatherCity = $('.location');
     const $feelsLike = $('.feelsLike');
     const $weatherForecast = $('.weatherForecast');
+    const $date = $('.date');
+
+    //set todays date on the element with class date using dayjs
+
+    $date.html(dayjs().format('dddd, MMMM D, YYYY'));
+
+
     
 
     $searchBtn.on('click', function (event) {
