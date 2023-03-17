@@ -1,19 +1,17 @@
 $(document).ready(function () {
 
     const $searchBtn = $('#search-button');
-    const $weatherTempBellingham = $('.weatherTempBellingham');
-    const $weatherCityBellingham = $('.weatherCityBellingham');
-    const $feelsLikeBellingham = $('.feelsLikeBellingham');
+    const $weatherTemp = $('.weatherTemp');
+    const $weatherCity = $('.weatherCity');
+    const $feelsLike = $('.feelsLike');
     const $weatherForecast = $('.weatherForecast');
-
+    
 
     $searchBtn.on('click', function (event) {
-
+        let $city = $('#city').val();
         event.preventDefault();
 
-        const cityZip = $("#search-input").val();
-
-        if (cityZip.length !== 5) {
+        if ($city.length == 'city') {
             //empty input field
             $("#search-input").val('');
             window.alert("Please enter a valid zip code");
@@ -22,17 +20,17 @@ $(document).ready(function () {
 
             $.ajax({
 
-                url: `http://api.openweathermap.org/data/2.5/weather?zip=${cityZip}&units=imperial&APPID=25d33f8c57018604cd95eaaaa98fb241`,
+                url: `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent($city)}&units=imperial&appid=25d33f8c57018604cd95eaaaa98fb241`,
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
                     //save data to local storage
-                    localStorage.setItem('weatherData', JSON.stringify(data.name));
+                    localStorage.setItem('weatherData', JSON.stringify(data.city.name));
                     console.log(data);
                     //display data
-                    $weatherCityBellingham.html(data.name + ', ' + data.sys.country);
-                    $weatherTempBellingham.html(data.main.temp + ' &deg;F');
-                    $feelsLikeBellingham.html(data.main.feels_like + ' &deg;F');
+                    $weatherCity.html(data.name + ', ' + data.city.country);
+                    $weatherTemp.html(data.main.temp + ' &deg;F');
+                    $feelsLike.html(data.main.feels_like + ' &deg;F');
                 },
                 error: function () {
                     console.log('Error');
@@ -41,22 +39,6 @@ $(document).ready(function () {
             
 
             });
-
-            // $.ajax({
-
-            //     url: `http://api.openweathermap.org/data/2.5/forcast/zip?zip=${cityZip}&appid=25d33f8c57018604cd95eaaaa98fb241`,
-            //     type: 'GET',
-            //     dataType: 'json',
-            //     success: function (data) {
-            //         console.log(data);
-            //         //display weather forecast data
-            //         $weatherForecast.html(data.list);
-            //     },
-            //     error: function () {
-            //         console.log('Error');
-            //     }
-
-            // });
         }
     });
 });
