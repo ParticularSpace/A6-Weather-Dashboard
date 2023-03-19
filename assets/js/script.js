@@ -1,18 +1,54 @@
-$(document).ready(function () {
+$(document).ready(function (event) {
 
     const $searchBtn = $('#search-button');
     const $weatherTemp = $('.weatherTemp');
     const $weatherCity = $('.location');
     const $feelsLike = $('.feelsLike');
-    const $weatherForecast = $('.weatherForecast');
+    const $dateOne = $('.locationDateOne');
+    const $dateTwo = $('.locationDateTwo');
+    const $dateThree = $('.locationDateThree');
+    const $dateFour = $('.locationDateFour');
+    const $dateFive = $('.locationDateFive');
+    
     const $date = $('.date');
 
     //set todays date on the element with class date using dayjs
+    $date.html(dayjs().format('dddd, MMMM D'));
 
-    $date.html(dayjs().format('dddd, MMMM D, YYYY'));
+    const today = $date; // get the current date and time
+    const tomorrow = today.add(1, 'day' ); // add one day to get tomorrow's date
+    const dayThree = today.add(2, 'day');
+    const dayFour = today.add(3, 'day');
+    const dayFive = today.add(4, 'day');
+    const daySix = today.add(5, 'day');
 
+
+    // apply today, tomorrow, and the next 3 days to the forecast dates with class locationFore
+    $dateOne.html(tomorrow, 'dddd');
+    $dateTwo.html(dayThree, 'dddd');
+    $dateThree.html(dayFour, 'dddd');
+    $dateFour.html(dayFive, 'dddd');
+    $dateFive.html(daySix, 'dddd');
 
     
+
+
+
+
+    // loop through the next five days and display each date
+    // for (let i = 0; i < 5; i++) {
+    //     const date = tomorrow.add(i, 'day');
+    //     console.log(date.format('YYYY-MM-DD'));
+    //     $dateForecast.html(date);
+    // }
+
+    
+
+
+
+
+
+
 
     $searchBtn.on('click', function (event) {
         let $city = $('#city').val();
@@ -32,6 +68,7 @@ $(document).ready(function () {
                     $weatherCity.html(data.city.name + ', ' + data.city.country);
                     $weatherTemp.html(data.list[0].main.temp + ' &deg;F');
                     $feelsLike.html(data.list[0].main.feels_like + ' &deg;F');
+
                 },
                 error: function () {
                     console.log('Error');

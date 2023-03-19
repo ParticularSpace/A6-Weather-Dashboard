@@ -74,6 +74,11 @@ header h1 {
   text-align: start;
 }
 
+.locationFore {
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .temperature {
   font-size: 60px;
   font-weight: bold;
