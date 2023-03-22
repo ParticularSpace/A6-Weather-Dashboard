@@ -1,4 +1,4 @@
-$(document).ready(function (event) {
+$(document).ready(function () {
 
     const $searchBtn = $('#search-button');
     const $weatherTemp = $('.weatherTemp');
@@ -10,17 +10,17 @@ $(document).ready(function (event) {
     const $dateFour = $('.locationDateFour');
     const $dateFive = $('.locationDateFive');
     
-    const $date = $('.date');
-
+    const $dateCard = $('.date');
+    const $todayDate = dayjs();
     //set todays date on the element with class date using dayjs
-    $date.html(dayjs().format('dddd, MMMM D'));
+    $dateCard.html(dayjs().format('dddd, MMMM D'));
 
-    const today = $date; // get the current date and time
-    const tomorrow = today.add(1, 'day' ); // add one day to get tomorrow's date
-    const dayThree = today.add(2, 'day');
-    const dayFour = today.add(3, 'day');
-    const dayFive = today.add(4, 'day');
-    const daySix = today.add(5, 'day');
+
+    const tomorrow = $todayDate.add(1, 'day' ); // add one day to get tomorrow's date
+    const dayThree = $todayDate.add(2, 'day');
+    const dayFour = $todayDate.add(3, 'day');
+    const dayFive = $todayDate.add(4, 'day');
+    const daySix = $todayDate.add(5, 'day');
 
 
     // apply today, tomorrow, and the next 3 days to the forecast dates with class locationFore
@@ -41,14 +41,6 @@ $(document).ready(function (event) {
     //     console.log(date.format('YYYY-MM-DD'));
     //     $dateForecast.html(date);
     // }
-
-    
-
-
-
-
-
-
 
     $searchBtn.on('click', function (event) {
         let $city = $('#city').val();
