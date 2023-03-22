@@ -1,46 +1,53 @@
 $(document).ready(function () {
-
     const $searchBtn = $('#search-button');
+    const $searchHistory = $('#search-history');
     const $weatherTemp = $('.weatherTemp');
     const $weatherCity = $('.location');
     const $feelsLike = $('.feelsLike');
+    const $dateCard = $('.date');
+    const $todayDate = dayjs();
+    
+    const $temperatureCards = [".temperature1", ".temperature2", ".temperature3", ".temperature4", ".temperature5"];
+    const $descriptionCards = [".description:eq(0)", ".description:eq(1)", ".description:eq(2)", ".description:eq(3)", ".description:eq(4)"];
+
     const $dateOne = $('.locationDateOne');
     const $dateTwo = $('.locationDateTwo');
     const $dateThree = $('.locationDateThree');
     const $dateFour = $('.locationDateFour');
     const $dateFive = $('.locationDateFive');
-    
-    const $dateCard = $('.date');
-    const $todayDate = dayjs();
-    //set todays date on the element with class date using dayjs
+
+    // Set today's date
     $dateCard.html(dayjs().format('dddd, MMMM D'));
 
-
-    const tomorrow = $todayDate.add(1, 'day' ); // add one day to get tomorrow's date
+    const tomorrow = $todayDate.add(1, 'day');
     const dayThree = $todayDate.add(2, 'day');
     const dayFour = $todayDate.add(3, 'day');
     const dayFive = $todayDate.add(4, 'day');
     const daySix = $todayDate.add(5, 'day');
 
+    // Set the forecast dates
+    $dateOne.html(tomorrow.format('dddd, MMMM D'));
+    $dateTwo.html(dayThree.format('dddd, MMMM D'));
+    $dateThree.html(dayFour.format('dddd, MMMM D'));
+    $dateFour.html(dayFive.format('dddd, MMMM D'));
+    $dateFive.html(daySix.format('dddd, MMMM D'));
 
-    // apply today, tomorrow, and the next 3 days to the forecast dates with class locationFore
-    $dateOne.html(tomorrow, 'dddd');
-    $dateTwo.html(dayThree, 'dddd');
-    $dateThree.html(dayFour, 'dddd');
-    $dateFour.html(dayFive, 'dddd');
-    $dateFive.html(daySix, 'dddd');
+    function loadSearchHistory() {
+        const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+        $searchHistory.empty();
+        for (let city of searchHistory) {
+            $searchHistory.append(`<div class="search-history-item">${city}</div>`);
+        }
+    }
 
-    
-
-
-
-
-    // loop through the next five days and display each date
-    // for (let i = 0; i < 5; i++) {
-    //     const date = tomorrow.add(i, 'day');
-    //     console.log(date.format('YYYY-MM-DD'));
-    //     $dateForecast.html(date);
-    // }
+    function saveSearchHistory(city) {
+        let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+        if (!searchHistory.includes(city)) {
+            searchHistory.push(city);
+            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+            loadSearchHistory();
+        }
+    }
 
     $searchBtn.on('click', function (event) {
         let $city = $('#city').val();
@@ -55,6 +62,7 @@ $(document).ready(function () {
                 success: function (data) {
                     //save data to local storage
                     localStorage.setItem('weatherData', JSON.stringify(data.city.name));
+                    //display data in console
                     console.log(data);
                     //display data
                     $weatherCity.html(data.city.name + ', ' + data.city.country);
