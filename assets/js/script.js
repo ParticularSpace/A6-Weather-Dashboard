@@ -39,7 +39,7 @@ $(document).ready(function () {
             $(`.locationDate${day}`).html(currentDate.format('dddd, MMMM D'));
         });
     }
-
+    // Get weather data from OpenWeather API
     function getWeatherData(city) {
         $.ajax({
             url: `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&units=imperial&appid=25d33f8c57018604cd95eaaaa98fb241`,
@@ -62,7 +62,7 @@ $(document).ready(function () {
             }
         });
     }
-
+    // Save search history to local storage
     function saveToSearchHistory(city) {
         let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
@@ -73,7 +73,7 @@ $(document).ready(function () {
 
         loadSearchHistory();
     }
-
+    // Load search history from local storage
     function loadSearchHistory() {
         let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
@@ -83,7 +83,7 @@ $(document).ready(function () {
             $searchHistory.append($historyItem);
         });
     }
-
+    // Get weather icon class based on weather description
     function getWeatherIconClass(weatherDescription) {
         const desc = weatherDescription.toLowerCase();
       
@@ -101,20 +101,30 @@ $(document).ready(function () {
           return 'wi wi-day-sunny';
         }
       }
-
+      // Display forecast data
       function displayForecast(data) {
         for (let i = 0; i < 5; i++) {
           const forecastTemp = data.list[i * 8].main.temp;
           const weatherDescription = data.list[i * 8].weather[0].description;
           const weatherIconClass = getWeatherIconClass(weatherDescription);
+          const forecastHumidity = data.list[i * 8].main.humidity;
+          const forecastWindSpeed = data.list[i * 8].wind.speed;
+          const $locationDate = $(`.locationDate${i+1}`);
+          const $mapLocation = $(`.mapLocation:eq(${i})`);
           const $temperature = $(`.temperature${i + 1}`);
-          const $description = $(`.description:eq(${i})`);
-          const $icon = $('<i>').addClass(weatherIconClass);
       
+          const $weatherIcon = $('<i>').addClass(weatherIconClass);
+          const $weatherInfo = $('<div>').addClass('weather-info');
+          const $temp = $('<p>').html(`Temperature: <span class="temp-value">${forecastTemp}&deg;F</span>`);
+          const $humidity = $('<p>').html(`Humidity: <span class="humidity-value">${forecastHumidity}%</span>`);
+          const $windSpeed = $('<p>').html(`Wind Speed: <span class="wind-speed-value">${forecastWindSpeed} mph</span>`);
+      
+          $locationDate.html(dayjs(data.list[i * 8].dt_txt).format('dddd, MMMM D'));
+          $mapLocation.empty().append($weatherIcon).append(weatherDescription);
           $temperature.html(`${forecastTemp}&deg;F`);
-          $description.html('').append($icon).append(` ${weatherDescription}`);
+          $weatherInfo.append($temp).append($humidity).append($windSpeed);
+          $(`.weather-card:eq(${i})`).append($weatherInfo);
         }
       }
-      
       
 });

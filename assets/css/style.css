@@ -126,9 +126,17 @@ header h1 {
 
 .mapLocation {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  padding: 10px;
 }
+
+.mapLocation i {
+  font-size: 36px;
+  margin-right: 10px;
+}
+
 
 @media (max-width: 600px) {
   .search {
