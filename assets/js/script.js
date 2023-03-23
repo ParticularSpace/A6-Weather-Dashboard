@@ -84,11 +84,37 @@ $(document).ready(function () {
         });
     }
 
-    function displayForecast(data) {
-        for (let i = 0; i < 5; i++) {
-            const forecastTemp = data.list[i * 8].main.temp;
-            const $temperature = $(`.temperature${i + 1}`);
-            $temperature.html(`${forecastTemp}&deg;F`);
+    function getWeatherIconClass(weatherDescription) {
+        const desc = weatherDescription.toLowerCase();
+      
+        if (desc.includes('clear')) {
+          return 'wi wi-day-sunny';
+        } else if (desc.includes('clouds') || desc.includes('overcast')) {
+          return 'wi wi-cloudy';
+        } else if (desc.includes('rain')) {
+          return 'wi wi-rain';
+        } else if (desc.includes('snow')) {
+          return 'wi wi-snow';
+        } else if (desc.includes('thunderstorm')) {
+          return 'wi wi-thunderstorm';
+        } else {
+          return 'wi wi-day-sunny';
         }
-    }
+      }
+
+      function displayForecast(data) {
+        for (let i = 0; i < 5; i++) {
+          const forecastTemp = data.list[i * 8].main.temp;
+          const weatherDescription = data.list[i * 8].weather[0].description;
+          const weatherIconClass = getWeatherIconClass(weatherDescription);
+          const $temperature = $(`.temperature${i + 1}`);
+          const $description = $(`.description:eq(${i})`);
+          const $icon = $('<i>').addClass(weatherIconClass);
+      
+          $temperature.html(`${forecastTemp}&deg;F`);
+          $description.html('').append($icon).append(` ${weatherDescription}`);
+        }
+      }
+      
+      
 });
