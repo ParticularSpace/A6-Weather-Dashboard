@@ -6,6 +6,8 @@ $(document).ready(function () {
     const $feelsLike = $('.feelsLike');
     const $dateCard = $('.date');
     const $todayDate = dayjs();
+    const $windSpeed = $('.windSpeed');
+    const $humidity = $('.humidity');
 
     // Set today's date on the element with class date using dayjs
     $dateCard.html(dayjs().format('dddd, MMMM D'));
@@ -53,6 +55,10 @@ $(document).ready(function () {
                 $weatherCity.html(data.city.name + ', ' + data.city.country);
                 $weatherTemp.html(data.list[0].main.temp + ' &deg;F');
                 $feelsLike.html(data.list[0].main.feels_like + ' &deg;F');
+                $windSpeed.html(data.list[0].wind.speed + ' mph');
+                $humidity.html(data.list[0].main.humidity + '%');
+
+
 
                 updateForecastDates();
                 displayForecast(data);
