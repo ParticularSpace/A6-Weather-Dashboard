@@ -138,9 +138,90 @@ header h1 {
 }
 
 
+/* For screens smaller than 600px */
 @media (max-width: 600px) {
   .search {
     flex-direction: column;
     align-items: center;
+  }
+
+  .search input[type="text"] {
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+
+  .search button {
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+
+  .weather {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .weather-card {
+    width: 80%;
+  }
+
+  .weather-card-main {
+    width: 90%;
+  }
+}
+
+/* For screens between 600px and 900px */
+@media (min-width: 600px) and (max-width: 900px) {
+  .search {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .search input[type="text"] {
+    width: 70%;
+    border-radius: 20px 0 0 20px;
+    margin-bottom: 0;
+  }
+
+  .search button {
+    border-radius: 0 20px 20px 0;
+    margin-bottom: 0;
+  }
+}
+
+/* For screens larger than 900px */
+@media (min-width: 900px) {
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .search {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search input[type="text"] {
+    width: 50%;
+    border-radius: 20px 0 0 20px;
+    margin-bottom: 0;
+  }
+
+  .search button {
+    border-radius: 0 20px 20px 0;
+    margin-bottom: 0;
+  }
+
+  .weather {
+    justify-content: space-evenly;
+  }
+
+  .weather-card {
+    width: 200px;
+  }
+
+  .weather-card-main {
+    width: 600px;
   }
 }
