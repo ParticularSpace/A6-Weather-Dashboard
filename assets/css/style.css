@@ -185,6 +185,7 @@ header h1 {
   }
 
   .search button {
+
     border-radius: 0 20px 20px 0;
     margin-bottom: 0;
   }
@@ -193,7 +194,7 @@ header h1 {
 /* For screens larger than 900px */
 @media (min-width: 900px) {
   .container {
-    max-width: 900px;
+    max-width: auto;
     margin: 0 auto;
   }
 
@@ -218,7 +219,7 @@ header h1 {
   }
 
   .weather-card {
-    width: 200px;
+    width: 230px;
   }
 
   .weather-card-main {
