@@ -41,8 +41,21 @@ $(document).ready(function () {
             $(`.locationDate${day}`).html(currentDate.format('dddd, MMMM D'));
         });
     }
+
+    // Clear weather data
+    function clearWeatherData() {
+      $weatherCity.empty();
+      $weatherTemp.empty();
+      $feelsLike.empty();
+      $windSpeed.empty();
+      $humidity.empty();
+      $('.weather-info').remove();
+    }
+
+    
     // Get weather data from OpenWeather API
     function getWeatherData(city) {
+      clearWeatherData();
         $.ajax({
             url: `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&units=imperial&appid=25d33f8c57018604cd95eaaaa98fb241`,
             type: 'GET',
