@@ -8,6 +8,7 @@ $(document).ready(function () {
   const $todayDate = dayjs();
   const $windSpeed = $('.windSpeed');
   const $humidity = $('.humidity');
+  const $weatherIcon = $('.weatherIcon');
 
   // Set today's date on the element with class date using dayjs
   $dateCard.html(dayjs().format('dddd, MMMM D'));
@@ -64,12 +65,16 @@ $(document).ready(function () {
         // Save data to local storage
         saveToSearchHistory(data.city.name);
 
+        //console logs for testing
+        console.log(data);
+
         // Display data
         $weatherCity.html(data.city.name + ', ' + data.city.country);
         $weatherTemp.html(data.list[0].main.temp + ' &deg;F');
         $feelsLike.html(data.list[0].main.feels_like + ' &deg;F');
         $windSpeed.html(data.list[0].wind.speed + ' mph');
         $humidity.html(data.list[0].main.humidity + '%');
+        $weatherIcon.addClass(getWeatherIconClass(data.list[0].weather[0].description));
 
 
 
@@ -102,10 +107,11 @@ $(document).ready(function () {
       $searchHistory.append($historyItem);
     });
   }
-  // Get weather icon class based on weather description
+
+  // Get weather icon class
   function getWeatherIconClass(weatherDescription) {
     const desc = weatherDescription.toLowerCase();
-
+  
     if (desc.includes('clear')) {
       return 'wi wi-day-sunny';
     } else if (desc.includes('clouds') || desc.includes('overcast')) {
@@ -117,12 +123,14 @@ $(document).ready(function () {
     } else if (desc.includes('thunderstorm')) {
       return 'wi wi-thunderstorm';
     } else {
-      return 'wi wi-day-sunny';
+      return 'wi wi-day-sunny'; // return a default icon class
     }
   }
-  // Display forecast data
+  
+
   function displayForecast(data) {
     for (let i = 0; i < 5; i++) {
+      // Get forecast data
       const forecastTemp = data.list[i * 8].main.temp;
       const weatherDescription = data.list[i * 8].weather[0].description;
       const weatherIconClass = getWeatherIconClass(weatherDescription);
@@ -131,19 +139,24 @@ $(document).ready(function () {
       const $locationDate = $(`.locationDate${i + 1}`);
       const $mapLocation = $(`.mapLocation:eq(${i})`);
       const $temperature = $(`.temperature${i + 1}`);
-
+  
+      // Create weather info elements
       const $weatherIcon = $('<i>').addClass(weatherIconClass);
       const $weatherInfo = $('<div>').addClass('weather-info');
       const $temp = $('<p>').html(`Temperature: <span class="temp-value">${forecastTemp}&deg;F</span>`);
       const $humidity = $('<p>').html(`Humidity: <span class="humidity-value">${forecastHumidity}%</span>`);
       const $windSpeed = $('<p>').html(`Wind Speed: <span class="wind-speed-value">${forecastWindSpeed} mph</span>`);
-
+  
       $locationDate.html(dayjs(data.list[i * 8].dt_txt).format('dddd, MMMM D'));
-      $mapLocation.empty().append($weatherIcon).append(weatherDescription);
+      $mapLocation.empty().append($weatherIcon).append(weatherDescription); // update $mapLocation here
       $temperature.html(`${forecastTemp}&deg;F`);
       $weatherInfo.append($temp).append($humidity).append($windSpeed);
       $(`.weather-card:eq(${i})`).append($weatherInfo);
+  
+      console.log($mapLocation);
     }
   }
+  
+
 
 });
