@@ -65,9 +65,6 @@ $(document).ready(function () {
         // Save data to local storage
         saveToSearchHistory(data.city.name);
 
-        //console logs for testing
-        console.log(data);
-
         // Display data
         $weatherCity.html(data.city.name + ', ' + data.city.country);
         $weatherTemp.html(data.list[0].main.temp + ' &deg;F');
@@ -75,8 +72,6 @@ $(document).ready(function () {
         $windSpeed.html(data.list[0].wind.speed + ' mph');
         $humidity.html(data.list[0].main.humidity + '%');
         $weatherIcon.addClass(getWeatherIconClass(data.list[0].weather[0].description));
-
-
 
         updateForecastDates();
         displayForecast(data);
@@ -111,7 +106,7 @@ $(document).ready(function () {
   // Get weather icon class
   function getWeatherIconClass(weatherDescription) {
     const desc = weatherDescription.toLowerCase();
-  
+
     if (desc.includes('clear')) {
       return 'wi wi-day-sunny';
     } else if (desc.includes('clouds') || desc.includes('overcast')) {
@@ -126,7 +121,7 @@ $(document).ready(function () {
       return 'wi wi-day-sunny'; // return a default icon class
     }
   }
-  
+
 
   function displayForecast(data) {
     for (let i = 0; i < 5; i++) {
@@ -139,24 +134,21 @@ $(document).ready(function () {
       const $locationDate = $(`.locationDate${i + 1}`);
       const $mapLocation = $(`.mapLocation:eq(${i})`);
       const $temperature = $(`.temperature${i + 1}`);
-  
+
       // Create weather info elements
       const $weatherIcon = $('<i>').addClass(weatherIconClass);
       const $weatherInfo = $('<div>').addClass('weather-info');
       const $temp = $('<p>').html(`Temperature: <span class="temp-value">${forecastTemp}&deg;F</span>`);
       const $humidity = $('<p>').html(`Humidity: <span class="humidity-value">${forecastHumidity}%</span>`);
       const $windSpeed = $('<p>').html(`Wind Speed: <span class="wind-speed-value">${forecastWindSpeed} mph</span>`);
-  
+
+      // Update forecast card with more data
       $locationDate.html(dayjs(data.list[i * 8].dt_txt).format('dddd, MMMM D'));
       $mapLocation.empty().append($weatherIcon).append(weatherDescription); // update $mapLocation here
       $temperature.html(`${forecastTemp}&deg;F`);
       $weatherInfo.append($temp).append($humidity).append($windSpeed);
       $(`.weather-card:eq(${i})`).append($weatherInfo);
-  
-      console.log($mapLocation);
+
     }
   }
-  
-
-
 });
