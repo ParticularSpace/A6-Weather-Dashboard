@@ -134,7 +134,7 @@ header h1 {
   margin-right: 10px;
 }
 
-/* For screens smaller than 600px */
+
 @media (max-width: 600px) {
   .search {
     flex-direction: column;
@@ -167,7 +167,7 @@ header h1 {
   }
 }
 
-/* For screens between 600px and 900px */
+
 @media (min-width: 600px) and (max-width: 900px) {
   .search {
     flex-direction: row;
@@ -186,7 +186,7 @@ header h1 {
   }
 }
 
-/* For screens larger than 900px */
+
 @media (min-width: 900px) {
   .container {
     max-width: auto;
