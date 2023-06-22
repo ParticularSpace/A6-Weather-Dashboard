@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <html>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,69 +9,53 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
-
     <title>Weather Forecast</title>
-    <body>
-      <header>
-        <h1>Weather Forecast</h1>
-      </header>
-      <div class="container">
-        <div class="search">
-          <input type="text" id="city" placeholder="Enter city name..." />
-          <button id="search-button">Search</button>
-          <div id="search-history"></div>
+  </head>
+  <body>
+    <header>
+      <h1>Weather Forecast</h1>
+    </header>
+    <main class="container">
+      <section class="search">
+        <input type="text" id="city" placeholder="Enter city name..." />
+        <button id="search-button">Search</button>
+        <div id="search-history"></div>
+      </section>
+      <section class="weather-card-main">
+        <h2 class="location">City Name</h2>
+        <div class="weatherIcon"></div>
+        <p class="date"></p>
+        <p class="weatherTemp">Temperature: </p>
+        <p class="feelsLike">Feels Like: </p>
+        <p class="windSpeed">Wind Speed: </p>
+        <p class="humidity">Humidity: </p>
+      </section>
+      <section class="weather">
+        <!-- Repeat this div for each day in the forecast -->
+        <div class="weather-card">
+          <h3 class="locationDate">Date</h3>
+          <div class="mapLocation"></div>
         </div>
-        <div class="weather-card-main">
-          <div>
-            <h1 class="location">City Name</h1>
-            <div class="weatherIcon"></div>
-            <h2 class="date"></h2>
-            <p1><strong>Temperature: </strong></p1>
-            <p1 class="weatherTemp"></p1>
-          </div>
-          <div>
-            <p1><strong>Feels Like: </strong></p1>
-            <p1 class="feelsLike"></p1>
-          </div>
-          <div>
-            <p1><strong>Wind Speed: </strong></p1>
-            <p1 class="windSpeed"></p1>
-          </div>
-          <div>
-            <p1><strong>Humidity: </strong></p1>
-            <p1 class="humidity"></p1>
-          </div>
+        <div class="weather-card">
+          <h3 class="locationDate">Date</h3>
+          <div class="mapLocation"></div>
         </div>
-        <div class="weather">
-          <div class="weather-card">
-            <h2 class="locationDateOne">Date</h2>
-            <div class="mapLocation"></div>
-          </div>
-          <div class="weather-card">
-            <h2 class="locationDateTwo">Date</h2>
-            <div class="mapLocation"></div>
-          </div>
-          <div class="weather-card">
-            <h2 class="locationDateThree">Date</h2>
-            <div class="mapLocation"></div>
-          </div>
-          <div class="weather-card">
-            <h2 class="locationDateFour">Date</h2>
-            <div class="mapLocation"></div>
-          </div>
-          <div class="weather-card">
-            <h2 class="locationDateFive">Date</h2>
-            <div class="mapLocation"></div>
-          </div>
+        <div class="weather-card">
+          <h3 class="locationDate">Date</h3>
+          <div class="mapLocation"></div>
         </div>
-      </div>
-      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-      <script src="
-  https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js
-  "></script>
-
-      <script src="assets/js/script.js"></script>
-    </body>
-  </html>
+        <div class="weather-card">
+          <h3 class="locationDate">Date</h3>
+          <div class="mapLocation"></div>
+        </div>
+        <div class="weather-card">
+          <h3 class="locationDate">Date</h3>
+          <div class="mapLocation"></div>
+        </div>
+      </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js"></script>
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>
